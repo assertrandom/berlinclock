@@ -25,7 +25,7 @@ public class ClockRepresentationService {
 	}
 
 
-	private String assembleBerlinClockFormat(int hours, int minutes, int seconds) {
+	public String assembleBerlinClockFormat(int hours, int minutes, int seconds) {
 		String returnVal = getLampCreationService().getFirstRowForSeconds(seconds) + " " + getLampCreationService().getSecondRowForHours(hours) + 
 				" " + getLampCreationService().getThirdRowForHours(hours) + " " + getLampCreationService().getFourthRowForMinutes(minutes) + 
 				" " + getLampCreationService().getFifthRowForMinutes(minutes);
