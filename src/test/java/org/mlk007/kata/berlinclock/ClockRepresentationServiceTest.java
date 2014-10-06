@@ -122,4 +122,23 @@ public class ClockRepresentationServiceTest {
 
 	}
 
+	@Test
+	public void testConversionServiceCalls() {
+
+		lampCreationService = Mockito.mock(LampCreationService.class);
+
+		String dateStr = "23:57:59";
+
+		clockRepresentationService.setLampCreationService(lampCreationService);
+
+		clockRepresentationService.getBerlinClockRepresentationForDate(dateStr);
+
+		verify(lampCreationService, Mockito.times(1)).getFirstRowForSeconds(59);
+		verify(lampCreationService, Mockito.times(1)).getSecondRowForHours(23);
+		verify(lampCreationService, Mockito.times(1)).getThirdRowForHours(23);
+		verify(lampCreationService, Mockito.times(1)).getFourthRowForMinutes(57);
+		verify(lampCreationService, Mockito.times(1)).getFifthRowForMinutes(57);
+
+	}
+
 }
