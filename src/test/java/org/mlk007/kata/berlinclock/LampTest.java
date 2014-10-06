@@ -26,10 +26,10 @@ public class LampTest {
 	
 	@Test
 	public void testLampStringRepresentation() {
-		assertEquals(lamp.getStringRepresentation(), "O");
+		assertEquals("O", lamp.getStringRepresentation());
 		lamp.setLampState(true);
 		logger.debug("Switching on the lamp  ");
-		assertEquals(lamp.getStringRepresentation(), "R");
+		assertEquals("R", lamp.getStringRepresentation());
 		
 	}
 
