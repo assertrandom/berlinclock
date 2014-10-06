@@ -26,6 +26,18 @@ public class LampCreationServiceTest {
 		assertEquals("O", secondsRowStr);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testOutOfRangeForSeconds() {
+		String secondsRowStr = lampCreationService.getFirstRowForSeconds(72);
+		logger.debug(secondsRowStr);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testOutOfRangeForSeconds2() {
+		String secondsRowStr = lampCreationService.getFirstRowForSeconds(-1);
+		logger.debug(secondsRowStr);
+	}
+
 	@Test
 	public void testFirstLampsRow() {
 		String firstLampsRowStr = lampCreationService.getSecondRowForHours(12);
