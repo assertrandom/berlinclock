@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mlk007.kata.berlinclock.enums.LampColourEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,106 +20,104 @@ public class LampCreationServiceTest {
 
 	@Test
 	public void testSecondsLampCreation() {
-		Lamp lamp = lampCreationService.getSecondsLamp(0);
-		assertEquals(lamp.getLampColour(), LampColourEnum.YELLOW);
-		assertEquals("Y", lamp.getStringRepresentation());
-		lamp = lampCreationService.getSecondsLamp(1);
-		assertEquals("O", lamp.getStringRepresentation());
+		String secondsRowStr = lampCreationService.getFirstRowForSeconds(0);
+		assertEquals("Y", secondsRowStr);
+		secondsRowStr = lampCreationService.getFirstRowForSeconds(1);
+		assertEquals("O", secondsRowStr);
 	}
 	
 	@Test
 	public void testFirstLampsRow(){
-		String firstLampsRowStr = lampCreationService.getFirstLampsRow(12);
+		String firstLampsRowStr = lampCreationService.getSecondRowForHours(12);
 		assertEquals("RROO", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getFirstLampsRow(23);
+		firstLampsRowStr = lampCreationService.getSecondRowForHours(23);
 		logger.debug(firstLampsRowStr);
 		assertEquals("RRRR", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getFirstLampsRow(0);
+		firstLampsRowStr = lampCreationService.getSecondRowForHours(0);
 		logger.debug(firstLampsRowStr);
 		assertEquals("OOOO", firstLampsRowStr);
 	}
 	
 	@Test (expected=IllegalArgumentException.class)
 	public void testNegativeNumberForHour() {
-		String firstLampsRowStr = lampCreationService.getFirstLampsRow(-1);
+		String firstLampsRowStr = lampCreationService.getSecondRowForHours(-1);
 		logger.debug(firstLampsRowStr);
 	}
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testOutOfLimitNumberForHour() {
-		String firstLampsRowStr = lampCreationService.getFirstLampsRow(25);
+		String firstLampsRowStr = lampCreationService.getSecondRowForHours(25);
 		logger.debug(firstLampsRowStr);
 	}	
 	
 	@Test
 	public void testSecondLampsRow(){
-		String firstLampsRowStr = lampCreationService.getSecondLampsRow(12);
+		String firstLampsRowStr = lampCreationService.getThirdRowForHours(12);
 		assertEquals("RROO", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getSecondLampsRow(23);
+		firstLampsRowStr = lampCreationService.getThirdRowForHours(23);
 		logger.debug(firstLampsRowStr);
 		assertEquals("RRRO", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getSecondLampsRow(0);
-		logger.debug(firstLampsRowStr);
+		firstLampsRowStr = lampCreationService.getThirdRowForHours(0);
 		assertEquals("OOOO", firstLampsRowStr);
 	}
 	
 	@Test (expected=IllegalArgumentException.class)
 	public void testNegativeNumberForSecondHour() {
-		String firstLampsRowStr = lampCreationService.getSecondLampsRow(-1);
+		String firstLampsRowStr = lampCreationService.getThirdRowForHours(-1);
 		logger.debug(firstLampsRowStr);
 	}
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testOutOfLimitNumberForSecondHour() {
-		String firstLampsRowStr = lampCreationService.getSecondLampsRow(25);
+		String firstLampsRowStr = lampCreationService.getThirdRowForHours(25);
 		logger.debug(firstLampsRowStr);
 	}
 	
 	@Test
 	public void testThirdLampsRow(){
-		String firstLampsRowStr = lampCreationService.getThirdLampsRow(34);
+		String firstLampsRowStr = lampCreationService.getFourthRowForMinutes(34);
 		assertEquals("YYRYYROOOOO", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getThirdLampsRow(23);
+		firstLampsRowStr = lampCreationService.getFourthRowForMinutes(23);
 		logger.debug(firstLampsRowStr);
 		assertEquals("YYRYOOOOOOO", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getThirdLampsRow(0);
+		firstLampsRowStr = lampCreationService.getFourthRowForMinutes(0);
 		logger.debug(firstLampsRowStr);
 		assertEquals("OOOOOOOOOOO", firstLampsRowStr);
 	}	
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testNegativeNumberForMinutes() {
-		String firstLampsRowStr = lampCreationService.getThirdLampsRow(-1);
+		String firstLampsRowStr = lampCreationService.getFourthRowForMinutes(-1);
 		logger.debug(firstLampsRowStr);
 	}
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testOutOfLimitNumberForMinutes() {
-		String firstLampsRowStr = lampCreationService.getThirdLampsRow(65);
+		String firstLampsRowStr = lampCreationService.getFourthRowForMinutes(65);
 		logger.debug(firstLampsRowStr);
 	}
 	
 	@Test
 	public void testLastLampsRow(){
-		String firstLampsRowStr = lampCreationService.getLastLampsRow(34);
+		String firstLampsRowStr = lampCreationService.getFifthRowForMinutes(34);
 		assertEquals("YYYY", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getLastLampsRow(23);
+		firstLampsRowStr = lampCreationService.getFifthRowForMinutes(23);
 		logger.debug(firstLampsRowStr);
 		assertEquals("YYYO", firstLampsRowStr);
-		firstLampsRowStr = lampCreationService.getLastLampsRow(0);
+		firstLampsRowStr = lampCreationService.getFifthRowForMinutes(0);
 		logger.debug(firstLampsRowStr);
 		assertEquals("OOOO", firstLampsRowStr);
 	}	
 	
 	@Test (expected=IllegalArgumentException.class)
 	public void testNegativeNumberForLastMinutes() {
-		String firstLampsRowStr = lampCreationService.getLastLampsRow(-1);
+		String firstLampsRowStr = lampCreationService.getFifthRowForMinutes(-1);
 		logger.debug(firstLampsRowStr);
 	}
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testOutOfLimitNumberForLastRowMinutes() {
-		String firstLampsRowStr = lampCreationService.getLastLampsRow(65);
+		String firstLampsRowStr = lampCreationService.getFifthRowForMinutes(65);
 		logger.debug(firstLampsRowStr);
 	}
 		

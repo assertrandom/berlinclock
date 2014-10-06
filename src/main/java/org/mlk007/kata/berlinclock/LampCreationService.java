@@ -12,14 +12,14 @@ public class LampCreationService {
 	private static final int MINUTE_FIRST_ROW_LENGTH = 11;
 	private static final int MINUTE_SECOND_ROW_LENGTH = 4;
 
-	public Lamp getSecondsLamp(int seconds) {
+	public String getFirstRowForSeconds(int seconds) {
 		Lamp lamp = new Lamp(LampColourEnum.YELLOW);
 		if (seconds % 2 == 0) 
 			lamp.setLampState(true);
-		return lamp;
+		return lamp.getStringRepresentation();
 	}
 
-	public String getFirstLampsRow(int hour) {
+	public String getSecondRowForHours(int hour) {
 		validateHourValue(hour);
 
 		int switchedOnLamps = hour / 5;
@@ -27,14 +27,20 @@ public class LampCreationService {
 	}
 
 	
-	public String getSecondLampsRow(int hour) {
+	public String getThirdRowForHours(int hour) {
 		validateHourValue(hour);
 
 		int switchedOnLamps = hour % 5;
 		return  getHoursRowsString(switchedOnLamps, HOUR_ROW_LENGTH, LampColourEnum.RED);
 	}	
 
-	public String getLastLampsRow(int minutes) {
+	public String getFourthRowForMinutes(int minute) {
+		validateMinuteValue(minute);
+		int switchedOnLamps = minute / 5;
+		return  getMinutesFirstRowString(switchedOnLamps, MINUTE_FIRST_ROW_LENGTH);
+	}
+
+	public String getFifthRowForMinutes(int minutes) {
 		validateMinuteValue(minutes);
 
 		int switchedOnLamps = minutes % 5;
@@ -63,23 +69,18 @@ public class LampCreationService {
 		return lampRowRepresentation.toString();
 	}
 
-	public String getThirdLampsRow(int minute) {
-		validateMinuteValue(minute);
-		int switchedOnLamps = minute / 5;
-		return  getMinutesFirstRowString(switchedOnLamps, MINUTE_FIRST_ROW_LENGTH);
-	}
 
 	private String getMinutesFirstRowString(int switchedOnLamps, int lampCount) {
 		StringBuffer lampRowRepresentation = new StringBuffer();
 
-		for (int count= 0; count < lampCount; count++) {
+		for (int count= 1; count <= lampCount; count++) {
 			Lamp lamp;
-			if ((count+1) %3 == 0) {
+			if (count %3 == 0) {
 				 lamp = new Lamp(LampColourEnum.RED);
 			} else {
 				 lamp = new Lamp(LampColourEnum.YELLOW);
 			}
-			if (switchedOnLamps > count)  
+			if (switchedOnLamps >= count)  
 				lamp.setLampState(true);
 			lampRowRepresentation.append(lamp.getStringRepresentation());
 		}
