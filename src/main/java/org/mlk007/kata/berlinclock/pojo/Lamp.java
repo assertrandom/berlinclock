@@ -1,4 +1,4 @@
-package org.mlk007.kata.berlinclock;
+package org.mlk007.kata.berlinclock.pojo;
 
 import org.mlk007.kata.berlinclock.enums.LampColourEnum;
 

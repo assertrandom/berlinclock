@@ -1,10 +1,11 @@
-package org.mlk007.kata.berlinclock;
+package org.mlk007.kata.berlinclock.pojo;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mlk007.kata.berlinclock.enums.LampColourEnum;
+import org.mlk007.kata.berlinclock.pojo.Lamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

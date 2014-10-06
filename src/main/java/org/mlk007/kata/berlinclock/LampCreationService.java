@@ -1,6 +1,7 @@
 package org.mlk007.kata.berlinclock;
 
 import org.mlk007.kata.berlinclock.enums.LampColourEnum;
+import org.mlk007.kata.berlinclock.pojo.Lamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
