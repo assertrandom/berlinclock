@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 public class LampCreationService {
 
-	Logger logger = LoggerFactory.getLogger(LampCreationService.class);
+	private static Logger logger = LoggerFactory.getLogger(LampCreationService.class);
 
 	private static final int HOUR_ROW_LENGTH = 4;
 	private static final int MINUTE_FIRST_ROW_LENGTH = 11;
